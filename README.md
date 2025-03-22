@@ -63,7 +63,7 @@ O projeto demonstrou como variáveis demográficas e de saúde influenciam diret
 
 Clone o repositório:
 ```python
-git clone milenoepifanio/RegressaoLogistica_SeguroSaude.git
+git clone https://github.com/milenoepifanio/RegressaoLogistica_SeguroSaude.git
 ```
 Instale as dependências:
 ```python
