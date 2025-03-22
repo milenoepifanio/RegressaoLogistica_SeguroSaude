@@ -1,4 +1,4 @@
-# Documentação do Projeto: Predição de Gastos com Planos de Saúde
+# Predição de Gastos com Planos de Saúde
 
 ## 1. Descrição do Projeto
 
