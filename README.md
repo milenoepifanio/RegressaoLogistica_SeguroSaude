@@ -89,5 +89,5 @@ pip install -r requirements.txt
 ```
 Execute o projeto:
 ```python
-Projeto 2 - Regressão usando Scikit Learn.ipynb
+Regressão.ipynb
 ```
