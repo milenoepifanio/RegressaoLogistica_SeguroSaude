@@ -1,63 +1,81 @@
 # Predição de Gastos com Planos de Saúde
 
 ## 1. Descrição do Projeto
+Este projeto tem como objetivo prever os gastos com planos de saúde com base em características demográficas e de saúde dos segurados. O foco é entender como variáveis como idade, IMC, número de filhos, hábito de fumar, sexo e região influenciam o custo do seguro.
 
-Este projeto tem como objetivo prever os gastos com planos de saúde com base em características demográficas e de saúde dos segurados. Utilizando a base de dados do livro Machine Learning with R de Brett Lantz, o projeto explora a relação entre variáveis como idade, índice de massa corporal (IMC), gênero, entre outras, e o custo do plano de saúde.
+## 2. Problema que Queremos Solucionar
+O problema que queremos solucionar é prever os gastos com planos de saúde de acordo com as características do segurado. 
 
-## 2. Objetivos
+Essa previsão pode ser útil:
+- Para **segurados**, que desejam entender quais fatores tornam seus planos mais caros ou mais baratos.
+- Para **seguradoras**, que precisam manter o equilíbrio financeiro e definir preços de forma mais justa e estratégica com base no perfil de risco de cada pessoa.
 
-- Analisar a influência de variáveis demográficas e de saúde nos custos dos planos de saúde.
 
-- Aplicar técnicas de Machine Learning para construir um modelo de regressão.
+## 3. Objetivos
+- Analisar a influência de variáveis demográficas e de saúde nos custos dos planos.
+- Construir modelos de regressão com diferentes algoritmos.
+- Avaliar o desempenho preditivo utilizando métricas apropriadas.
 
-- Avaliar o desempenho do modelo utilizando métricas apropriadas.
-
-## 3. Tecnologias Utilizadas
-
+## 4. Tecnologias Utilizadas
 - Linguagem: Python
+- Bibliotecas: Pandas, NumPy, Matplotlib, Seaborn, Scikit-Learn, Statsmodels
 
-- Bibliotecas: Pandas, NumPy, Matplotlib, Seaborn, Scikit-Learn
+## 5. Etapas do Projeto
 
-## 4. Etapas do Projeto
+### 5.1 Análise Exploratória de Dados (EDA)
+- Visualização das distribuições das variáveis numéricas.
+- Análise de correlações e pairplots.
+- Detecção de outliers e compreensão dos dados.
 
-### 4.1 - Análise Exploratória de Dados (EDA)
+### 5.2 Pré-Processamento
+- Codificação binária (sexo, fumante).
+- One-hot encoding para a variável de região.
+- Normalização das variáveis com MinMaxScaler.
 
-- Análise estatística e visualizações para entender a distribuição das variáveis.
+### 5.3 Construção dos Modelos
+- Separação em dados de treino e teste.
+- Modelos aplicados:
+  - Regressão Linear
+  - Árvore de Decisão
+- Validação cruzada (10 folds) com avaliação via RMSE.
 
-- Verificação de outliers e dados faltantes.
+### 5.4 Avaliação dos Modelos
+- Métricas utilizadas:
+  - Root Mean Squared Error (RMSE)
+  - R² Score
+- Comparativo de desempenho entre os modelos via boxplot.
+- Análise dos coeficientes e p-valores com `statsmodels`.
 
-### 4.2. Pré-Processamento
+## 6. Resultados
 
-- Codificação de variáveis categóricas.
+- A regressão linear apresentou melhor desempenho em comparação à árvore de decisão, com menor RMSE médio e maior estabilidade entre os folds da validação cruzada. Isso indica que a relação entre as variáveis e o custo do seguro é majoritariamente linear.
+- A árvore de decisão demonstrou maior variabilidade e propensão ao overfitting.
+- O valor de R² obtido com os dados de teste foi **0.78**, o que indica que aproximadamente 78% da variação nos custos dos planos pode ser explicada pelas variáveis utilizadas.
 
-- Escalonamento das variáveis numéricas utilizando MinMaxScaler e StandardScaler.
+### Validação com Novos Dados (Inputs Reais)
 
-### 4.3. Construção do Modelo
+- Para testar a capacidade de generalização, o modelo foi avaliado com **novos dados fornecidos manualmente pelo usuário via `input()`**, sem reutilizar a base de teste. Isso garante que o modelo **não tinha conhecimento prévio desses dados**.
 
-- Divisão do conjunto de dados em treino e teste.
+- Os valores inseridos foram:
 
-- Teste de diferentes algoritmos de regressão, como Regressão Linear, Random Forest e XGBoost.
+```python
+idade = input()                     # '27'
+indice_massa_corporal = input()    # '43'
+criancas = input()                 # '0'
+fumante = input("1 para fumante, 0 para não fumante: ")  # '0'
+sexo = input("1 para mulher, 0 para homem: ")            # '0'
+```
+Após normalização com o MinMaxScaler, os valores utilizados no modelo foram:
+```
+array([[0.19565217, 0.72746839, 0., 0., 0.]])
+```
 
-### 4.4 Avaliação do Modelo: Métricas utilizadas:
+A predição gerada pelo modelo foi:
+```
+array([[8903.40]])
+```
 
-- Mean Absolute Error (MAE)
-
-- Mean Squared Error (MSE)
-
-- Root Mean Squared Error (RMSE)
-
-- R² Score
-
-## 5. Resultados
-
-- Identificação das variáveis mais influentes no custo dos planos de saúde.
-
-- Comparativo de desempenho entre os modelos testados.
-
-## 6. Conclusão
-
-O projeto demonstrou como variáveis demográficas e de saúde influenciam diretamente o custo dos planos de saúde. Os modelos desenvolvidos apresentam um bom desempenho, oferecendo insights valiosos para o setor de seguros de saúde.
-
+Esse experimento confirma que o modelo consegue prever com boa precisão o custo de um plano de saúde baseado em características reais de entrada.
 
 ## 7. Como executar o projeto
 
